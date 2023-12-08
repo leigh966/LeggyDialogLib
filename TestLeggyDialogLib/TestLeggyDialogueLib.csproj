@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LeggyDialogLib\LeggyDialogLib.csproj" />
+    <ProjectReference Include="..\LeggyDialogLib\LeggyDialogueLib.csproj" />
   </ItemGroup>
 
 </Project>

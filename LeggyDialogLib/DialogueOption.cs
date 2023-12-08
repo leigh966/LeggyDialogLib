@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace LeggyDialogLib
 {
-    public class Dialog
+    public class DialogueOption
     {
         public string PlayerDialog;
         public string Response;
         public bool Said;
-        public Dialog(string playerDialog, string response)
+        public DialogueOption(string playerDialog, string response)
         {
             PlayerDialog = playerDialog;
             Response = response;

@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace LeggyDialogLib
 {
-    public class DialogTree
+    public class DialogueTree
     {
-        public DialogTreeNode ConversationStart {  get; private set; }
-        public DialogTree(string opener, string response)
+        public DialogueTreeNode ConversationStart {  get; private set; }
+        public DialogueTree(string opener, string response)
         {
-            ConversationStart = new DialogTreeNode(new Dialog(opener, response));
+            ConversationStart = new DialogueTreeNode(new DialogueOption(opener, response));
         }
-        public DialogTreeNode[] Options
+        public DialogueTreeNode[] Options
         {
             get
             {
