@@ -32,12 +32,7 @@ namespace LeggyDialogLib
         }
         public DialogueTreeNode[] ToNodeArray()
         {
-            if (_children.Count == 0)
-            {
-                return [this];
-            }
-
-            DialogueTreeNode[] array = new DialogueTreeNode[0];
+            DialogueTreeNode[] array = [this];
             foreach (ITreeNode<DialogueOption> child in _children)
             {
                 var newChild = new DialogueTreeNode(child);
