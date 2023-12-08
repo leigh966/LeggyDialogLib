@@ -10,7 +10,7 @@ namespace LeggyDialogLib
         {
             _response = response;
         }
-        public DialogTreeNode(string text, string response, DialogTreeNode parent) : base(text, )
+        public DialogTreeNode(string text, string response, DialogTreeNode parent) : base(text, parent)
         {
             _response= response;
         }
