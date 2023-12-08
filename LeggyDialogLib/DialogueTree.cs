@@ -25,7 +25,7 @@ namespace LeggyDialogLib
             }
         }
 
-        public DialogueTreeNode[] ToNodeArray()
+        public ITreeNode<DialogueOption>[] ToNodeArray()
         {
             return ConversationStart.ToNodeArray();
         }

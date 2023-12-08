@@ -30,16 +30,5 @@ namespace LeggyDialogLib
             }
             return [this];
         }
-        public DialogueTreeNode[] ToNodeArray()
-        {
-            DialogueTreeNode[] array = [this];
-            foreach (ITreeNode<DialogueOption> child in _children)
-            {
-                var newChild = new DialogueTreeNode(child);
-                array = array.Concat(newChild.ToNodeArray()).ToArray();
-            }
-
-            return array;
-        }
     }
 }
