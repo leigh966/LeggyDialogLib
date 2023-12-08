@@ -14,5 +14,23 @@ namespace LeggyDialogLib
         {
             _response= response;
         }
+        public void Say()
+        {
+            said = true;
+        }
+
+        public DialogTreeNode[] GetOptions()
+        {
+            if(said)
+            {
+                DialogTreeNode[] output = { };
+                foreach(DialogTreeNode child in _children) 
+                {
+                    output = output.Concat(child.GetOptions()).ToArray();
+                }
+                return output;
+            }
+            return new DialogTreeNode[1] { this };
+        }
     }
 }
