@@ -10,7 +10,7 @@ namespace LeggyDialogueLib
     public class DialogueNodeRecord : DialogueOption
     {
         public string Id, ParentId;
-        public List<string> childIds;
+        public List<string> childIds = new List<string>();
         public DialogueNodeRecord(string id, DialogueOption dialogue) : base(dialogue.PlayerDialog, dialogue.Response)
         {
             Id = id;
