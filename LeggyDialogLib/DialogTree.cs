@@ -12,8 +12,15 @@ namespace LeggyDialogLib
         public DialogTreeNode ConversationStart {  get; private set; }
         public DialogTree(string opener, string response)
         {
-            ConversationStart = new DialogTreeNode(opener, response);
+            ConversationStart = new DialogTreeNode(new Dialog(opener, response));
         }
+        public DialogTreeNode[] Options
+        {
+            get
+            {
+                return ConversationStart.GetOptions();
 
+            }
+        }
     }
 }

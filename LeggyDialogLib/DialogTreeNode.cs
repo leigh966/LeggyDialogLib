@@ -1,36 +1,34 @@
 ﻿using LeggyTreeLib;
 namespace LeggyDialogLib
 {
-    public class DialogTreeNode :  TreeNode<string>
+    public class DialogTreeNode :  TreeNode<Dialog>
     {
-        private string _response;
-        public string Response { get { return _response; } }
-        private bool said = false;
-        public DialogTreeNode(string text, string response) : base(text) 
+        public DialogTreeNode(Dialog dialog) : base(dialog) 
         {
-            _response = response;
+
         }
-        public DialogTreeNode(string text, string response, DialogTreeNode parent) : base(text, parent)
+        public DialogTreeNode(Dialog dialog, DialogTreeNode parent) : base(dialog, parent)
         {
-            _response= response;
+
         }
-        public void Say()
+
+        public DialogTreeNode(ITreeNode<Dialog> node) : base(node.Value, node.Parent)
         {
-            said = true;
+            _children = node.Children.ToList();
         }
 
         public DialogTreeNode[] GetOptions()
         {
-            if(said)
+            if(Value.Said)
             {
                 DialogTreeNode[] output = { };
-                foreach(DialogTreeNode child in _children) 
+                foreach(ITreeNode<Dialog> child in _children) 
                 {
-                    output = output.Concat(child.GetOptions()).ToArray();
+                    output = output.Concat(new DialogTreeNode(child).GetOptions()).ToArray();
                 }
                 return output;
             }
-            return new DialogTreeNode[1] { this };
+            return [this];
         }
     }
 }

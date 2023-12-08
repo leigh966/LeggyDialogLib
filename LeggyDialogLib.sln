@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeggyDialogLib", "LeggyDialogLib\LeggyDialogLib.csproj", "{7ABF684B-EAD5-4B85-834E-8A850A49A363}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLeggyDialogLib", "TestLeggyDialogLib\TestLeggyDialogLib.csproj", "{795597FA-5AA4-4B8E-91C6-2ECBAC93226B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7ABF684B-EAD5-4B85-834E-8A850A49A363}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7ABF684B-EAD5-4B85-834E-8A850A49A363}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7ABF684B-EAD5-4B85-834E-8A850A49A363}.Release|Any CPU.Build.0 = Release|Any CPU
+		{795597FA-5AA4-4B8E-91C6-2ECBAC93226B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{795597FA-5AA4-4B8E-91C6-2ECBAC93226B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{795597FA-5AA4-4B8E-91C6-2ECBAC93226B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{795597FA-5AA4-4B8E-91C6-2ECBAC93226B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
