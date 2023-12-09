@@ -4,7 +4,22 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Version>0.1.0</Version>
+    <Description>A library for handling dialogue in the form of a tree, great for use with Unity RPG games</Description>
+    <PackageReleaseNotes>This is a pre-release with very limited stability, work will continue to make this package more stable and provide more functionality but for now it should just be experimented with rather than expected to work well and be bug-free</PackageReleaseNotes>
+    <Title>LeggyDialogueLib</Title>
+    <PackageTags>unity;rpg;dialogue;tree;library</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/leigh966/LeggyDialogLib</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="LeggyTreeLib" Version="1.1.0" />
