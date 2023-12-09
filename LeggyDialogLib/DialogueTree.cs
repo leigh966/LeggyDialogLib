@@ -4,6 +4,7 @@ using Microsoft.Win32.SafeHandles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,11 +12,17 @@ namespace LeggyDialogLib
 {
     public class DialogueTree
     {
-        public DialogueTreeNode ConversationStart {  get; private set; }
+        public DialogueTreeNode ConversationStart;
         public DialogueTree(string opener, string response)
         {
             ConversationStart = new DialogueTreeNode(new DialogueOption(opener, response));
         }
+
+        public DialogueTree(DialogueTreeNode rootNode)
+        {
+            ConversationStart = rootNode;
+        }
+
         public DialogueTreeNode[] Options
         {
             get
@@ -62,6 +69,39 @@ namespace LeggyDialogLib
                 }
             }
             return records.ToArray();
+        }
+
+        private static List<DialogueNodeRecord> ReadRecords(string path)
+        {
+            string[] lines = File.ReadAllLines(path);
+            List<DialogueNodeRecord> records = new List<DialogueNodeRecord>();
+            foreach (string line in lines)
+            {
+                records.Add(DialogueNodeRecord.FromString(line));
+            }
+            return records;
+        }
+
+        public static void BuildFromRecords(List<DialogueNodeRecord> records, ref ITreeNode<DialogueOption> thisNode, DialogueNodeRecord thisRecord)
+        {
+            for(int i=0; i<thisRecord.childIds.Count(); i++)
+            {
+                var childRecord = records.Find(x => x.Id == thisRecord.childIds[i]);
+                // handle childRecord null case - would be an invalid tree
+                thisNode.AddChild(new DialogueOption(childRecord.PlayerDialog, childRecord.Response));
+                var childNode = thisNode.Children[i];
+                BuildFromRecords(records, ref childNode, childRecord );
+            }
+            
+        }
+
+        public static DialogueTree Open(string path)
+        {
+            var records = ReadRecords(path);
+            var rootRecord = records.Find(x=>x.ParentId == string.Empty);
+            ITreeNode<DialogueOption> rootNode = new DialogueTreeNode(new DialogueOption(rootRecord.PlayerDialog, rootRecord.Response));
+            BuildFromRecords(records, ref rootNode, rootRecord);
+            return new DialogueTree(new DialogueTreeNode(rootNode));
         }
 
         public void Save(string path)

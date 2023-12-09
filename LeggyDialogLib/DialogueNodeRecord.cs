@@ -26,5 +26,16 @@ namespace LeggyDialogueLib
             }
             return output;
         }
+
+        public static DialogueNodeRecord FromString(string record)
+        {
+            var splitRecord = record.Split(",");
+            DialogueNodeRecord output = new DialogueNodeRecord(splitRecord[0], new DialogueOption(splitRecord[2], splitRecord[3]));
+            output.ParentId = splitRecord[1];
+            output.childIds = splitRecord[4].Split(" ").ToList();
+            int tempOut = 0;
+            output.childIds.RemoveAll(x => !int.TryParse(x, out tempOut)); // maybe just store the ids as integers instead but this should work for now
+            return output;
+        }
     }
 }

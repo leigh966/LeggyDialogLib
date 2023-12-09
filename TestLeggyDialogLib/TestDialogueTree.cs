@@ -45,5 +45,10 @@ namespace TestLeggyDialogLib
             node2.AddChild(new DialogueOption("Why?", "It's raining"));
             Assert.AreEqual(5, tree.ToNodeArray().Length);
         }
+        [TestMethod]
+        public void TestOpenBasic() {
+            DialogueTree newTree = DialogueTree.Open("test.dtree");
+            Assert.AreEqual(5, newTree.ConversationStart.ToNodeArray().Length);
+        }
     }
 }
