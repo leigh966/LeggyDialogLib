@@ -87,7 +87,7 @@ namespace LeggyDialogLib
             for(int i=0; i<thisRecord.childIds.Count(); i++)
             {
                 var childRecord = records.Find(x => x.Id == thisRecord.childIds[i]);
-                // handle childRecord null case - would be an invalid tree
+                if (childRecord == null) throw new BadTreeException("Referenced node (id: " + thisRecord.childIds[i] + ") could not be found");
                 thisNode.AddChild(new DialogueOption(childRecord.PlayerDialog, childRecord.Response));
                 var childNode = thisNode.Children[i];
                 BuildFromRecords(records, ref childNode, childRecord );
@@ -99,6 +99,7 @@ namespace LeggyDialogLib
         {
             var records = ReadRecords(path);
             var rootRecord = records.Find(x=>x.ParentId == string.Empty);
+            if(rootRecord==null) throw new BadTreeException("No valid root node found");
             ITreeNode<DialogueOption> rootNode = new DialogueTreeNode(new DialogueOption(rootRecord.PlayerDialog, rootRecord.Response));
             BuildFromRecords(records, ref rootNode, rootRecord);
             return new DialogueTree(new DialogueTreeNode(rootNode));
